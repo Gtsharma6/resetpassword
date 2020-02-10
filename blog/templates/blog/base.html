@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+    <head>
+        <title>Blog app</title>
+        
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
+        <title>Django Authentication Example</title>
+    </head>
+    </head>
+    <body>
+        
+        <div class="page-header">
+            {% if user.is_authenticated %}
+            <a href="{% url 'blog:post_new'  %}" class="top-menu" ><span class="glyphicon glyphicon-plus"></span></a>
+            {% else %}
+            <a href="{% url 'blog:login'%}" class="top-menu " >Login</a>
+            {% endif %}
+            <h1><a href="{% url 'blog:post_list' %}">Blog </a>
+                {% if user.is_authenticated %}
+                	<a href="{% url 'blog:myblogs'%}">blogs</a>
+                	<a href="{% url 'blog:logout'%}">logout</a>
+                {% else %}
+                	<a href="{% url 'blog:signup'%}">	signup</a>
+
+                {% endif %}
+            </h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+    
+</html>
