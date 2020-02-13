@@ -14,12 +14,12 @@ urlpatterns = [
     path('login/',LoginView.as_view(),name='login'),
     path('signup/',views.signup, name='signup'),
     path('logout/',views.log_out,name='logout'),
-    path('myblogs/',views.myblogs,name='myblogs'),
+    #path('myblogs/',views.myblogs,name='myblogs'),
     path('<int:pk>/edit/', views.post_edit, name='post_edit'),
     path('<int:pk>/detail/', views.post_detail, name='post_detail'),
-    path('password_reset/',PasswordResetView.as_view(),name='password_reset'),
-    path('password_reset/done',PasswordResetDoneView.as_view(),name='password_reset_done'),
-    path('reset/<uidb64>/<token>/',PasswordResetConfirmView.as_view(),name='password_reset_confirm'),
-    path('reset/done/',PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    
+    path('password_reset/',PasswordResetView.as_view(template_name="blog/password_reset_form.html",subject_template_name='blog/password-reset/password_reset_subject.txt',email_template_name='blog/password-reset/password_reset_done.html'),name='password_reset'),
+    path('blog/password_reset/done/',PasswordResetDoneView.as_view(template_name="blog/password_reset_done.html"),name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',PasswordResetConfirmView.as_view(template_name="blog/password-reset/password_reset_confirm.html"),name='password_reset_confirm'),
+    path('password_reset_complete/',PasswordResetCompleteView.as_view(template_name="blog/password-reset/password_reset_complete.html"), name='password_reset_complete'),
+    path('subscribe/',views.subscriber,name='subscribe'),
 ]

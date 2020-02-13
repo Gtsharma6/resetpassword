@@ -1,7 +1,7 @@
 from django.contrib import admin
 #from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser,Post
+from .models import CustomUser,Post,Comment
 #from .forms import UserFrom
 
 # Register your models here.
@@ -19,5 +19,6 @@ class PostAdmin(admin.ModelAdmin):
 	list_filter = ("created_date",)
 
 admin.site.register(Post,PostAdmin)
+admin.site.register(Comment)
 
 		

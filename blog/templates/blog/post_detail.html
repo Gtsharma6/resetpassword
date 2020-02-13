@@ -7,9 +7,7 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-        {% if user == post.author %}
-        <a class="btn btn-default" href="{% url 'blog:post_edit' post.pk %}" ><span class="glyphicon glyphicon-pencil"></span></a>
-        {% endif %}
+        
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
         {% if error_message %}
@@ -20,4 +18,36 @@
         {% endif %}
         
     </div>
+
+   <!-- Comments Form --> 
+<h2>Add a new comment</h2>
+<form action="." method="post">
+    {{ comment_form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Add comment</button>
+</form>
+
+<!-- Comment with nested comments -->
+{% for comment in comments %}
+    <div class="comment" style="background-color: white">
+        <p class="info">{{ comment.author}} | {{ comment.created_date }}</p>
+            {{ comment.text|linebreaks }}
+
+        {% for replay in comment.replies.all %}
+            <p class="info">{{ replay.author }} | {{ replay.created_date }}</p>
+            <li>{{ replay.text }}</li>
+        {% endfor %}
+
+        <h5>Replay</h5>
+        <form action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <!-- Hidden input for parent comment.id -->
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <input class="btn btn-primary" type="submit" value="Replay">
+        </form>
+    </div>
+{% empty %}
+<h4>There are no comments yet.</h4>
+{% endfor %}
 {% endblock %}
