@@ -21,7 +21,7 @@ def home(request):
 
 def log_out(request):
     logout(request)
-    return redirect('home')
+    return redirect('blog:home')
 
 def signup(request):
     if request.method == 'POST':

@@ -15,7 +15,7 @@
         <th>Name</th>
         <th>Birthdate</th>
         <th>Country</th>
-        <th>City</th>
+        <th>State</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
           <td><a href="{% url 'country:person_change' person.pk %}">{{ person.name }}</a></td>
           <td>{{ person.birthdate }}</td>
           <td>{{ person.country.name }}</td>
-          <td>{{ person.city.name }}</td>
+          <td>{{ person.state.name }}</td>
         </tr>
       {% empty %}
         <tr>

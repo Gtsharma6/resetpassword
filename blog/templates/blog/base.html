@@ -4,8 +4,17 @@
        <title>blog world</title>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <!--<<link rel="stylesheet" href="{% static 'css/blog.css' %}">-->
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('button').click(function(){
+                    alert("Save")
+                });
+            });
+
+        </script>
     </head>
     </head>
     <body>
@@ -47,11 +56,12 @@
             <i class="fa fa-github-square fa-2x"></i></a>
     </div>
     <!--Below is the copyright information for the site. You can fill in your own here.-->
-    <div class="navbar-text pull-left">
+    <div class="page-header">
     &copy; Jakhar infotech, 2020
     </div>
-     <div>
+     <div class="page-header">
         <a href="{% url 'blog:subscribe' %}">Subscribe</a>
+        
     </div>
     </div>  
 </footer>

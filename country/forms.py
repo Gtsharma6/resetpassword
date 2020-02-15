@@ -1,5 +1,5 @@
 from django import forms
-from .models import Country,State,Person
+from .models import Country,State,Person,Document
 
 
 
@@ -20,3 +20,10 @@ class PersonForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields['state'].queryset = self.instance.country.state_set.order_by('name')
+
+
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ('description', 'document', )

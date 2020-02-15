@@ -9,4 +9,6 @@ urlpatterns = [
     path('add/', views.PersonCreateView.as_view(), name='person_add'),
     path('<int:pk>/', views.PersonUpdateView.as_view(), name='person_change'),
     path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),
+    path('uploads/simple', views.simple_upload, name='simple_upload'),
+    path('uploads/form/', views.model_form_upload, name='model_form_upload'),
 ]
